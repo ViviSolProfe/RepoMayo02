@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <title>Ej API JsonPlaceholder</title>
+    <script>
+        let url='https://jsonplaceholder.typicode.com/users';
+        fetch(url)
+            .then(response=>response.json())
+            .then(data=>mostrarData(data))
+            .catch(error=>console.log(error))
+        
+        const mostrarData=(data)=>{
+            console.log(data)
+            let body=""
+            for (var i=0; i<data.length; i++){
+                body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
+            }
+            document.getElementById('data').innerHTML=body
+        }
+        
+        //API de posts
+        let url2='https://jsonplaceholder.typicode.com/posts';
+        fetch(url2)
+            .then(response=>response.json())
+            .then(data=>mostrarDataPosts(data))
+            .catch(error=>console.log(error))
+        
+        const mostrarDataPosts=(data)=>{
+            console.log(data)
+            let dataPosts=""
+            for (var i=0; i<data.length; i++){
+                if (data[i].userId == 1)
+                {
+                    dataPosts+=`<tr><td>${data[i].id}</td><td>${data[i].title}</td><td>${data[i].body}</td></tr>`
+                }
+            }
+            document.getElementById('dataPosts').innerHTML=dataPosts
+        }
+
+
+
+    </script>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Ej Api JsonPlaceholder</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id  </th>
+                    <th>Name</th>
+                    <th>Email</th>
+
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+
+        </table>
+
+        <hr>
+
+        <h2>Ej Api de Posts</h2>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id  </th>
+                    <th>Title</th>
+                    <th>Body</th>
+
+                </tr>
+            </thead>
+            <tbody id="dataPosts">
+
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+</body>
+</html>

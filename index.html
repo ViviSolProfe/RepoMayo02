@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <title>API JsonPlaceholder</title>
+
+    <script>
+        
+        let url = 'https://jsonplaceholder.typicode.com/users/';
+          fetch(url)
+              .then( response => response.json() )
+              .then( data => mostrarData(data) )
+              .catch( error => console.log(error) )
+  
+          const mostrarData = (data) => {
+              console.log(data)
+              let body = ""
+              for (var i = 0; i < data.length; i++) {      
+                 body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
+              }
+              document.getElementById('data').innerHTML = body
+              //console.log(body)
+          }
+
+
+
+          /*
+          let url = 'https://jsonplaceholder.typicode.com/posts';
+          fetch(url)
+              .then( response => response.json() )
+              .then( data => mostrarData(data) )
+              .catch( error => console.log(error) )
+  
+          const mostrarData = (data) => {
+              console.log(data)
+              let body = ""
+              for (var i = 0; i < data.length; i++) {      
+                if (data[i].userId == 1)
+                {
+                 body+=`<tr><td>${data[i].id}</td><td>${data[i].title}</td><td>${data[i].body}</td></tr>`;
+                }
+              }
+              document.getElementById('data').innerHTML = body
+              //console.log(body)
+          }*/
+
+     </script>
+
+
+
+</head>
+<body>
+    <div class="container">
+
+        <h2>Ejemplo de API con Fetch</h2>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+
+    </div>
+    
+    
+
+</body>
+</html> 
